@@ -1,4 +1,4 @@
-package maiati.comercial.model.cadastro;
+package maiati.comercial.model;
 
 import java.io.Serializable;
 
@@ -6,12 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "tipo_colaborador")
-@NamedQuery(name = "TipoColaborador.findAll", query = "SELECT t FROM TipoColaborador t")
-public class TipoColaborador implements Serializable {
+@NamedQuery(name = "Setor.findAll", query = "SELECT s FROM Setor s")
+public class Setor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,7 +20,7 @@ public class TipoColaborador implements Serializable {
 
 	private String nome;
 
-	public TipoColaborador() {
+	public Setor() {
 	}
 
 	public int getId() {
@@ -65,7 +63,7 @@ public class TipoColaborador implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoColaborador other = (TipoColaborador) obj;
+		Setor other = (Setor) obj;
 		if (id != other.id)
 			return false;
 		return true;

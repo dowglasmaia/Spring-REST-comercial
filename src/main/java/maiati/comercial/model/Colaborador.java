@@ -1,4 +1,4 @@
-package maiati.comercial.model.cadastro;
+package maiati.comercial.model;
 
 import java.io.Serializable;
 import java.util.Date;
