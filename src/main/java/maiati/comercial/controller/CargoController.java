@@ -1,6 +1,7 @@
 package maiati.comercial.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import maiati.comercial.exception.RecursoNaoEncontradoException;
 import maiati.comercial.model.Cargo;
 import maiati.comercial.service.CargoService;
 
@@ -28,7 +30,13 @@ public class CargoController {
 
 	@GetMapping("/{id}")
 	public Cargo buscarPorId(@PathVariable Integer id) {
-		return service.buscarPorId(id);
+		try {
+			return service.buscarPorId(id);
+		} catch (NoSuchElementException e) {
+			throw new RecursoNaoEncontradoException("Registro Não Encontrado!");
+		}
+		
+		
 	}
 
 	@PostMapping
