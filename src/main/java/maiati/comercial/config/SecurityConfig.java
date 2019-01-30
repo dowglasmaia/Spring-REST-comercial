@@ -1,4 +1,4 @@
-package maiati.comercial;
+package maiati.comercial.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +11,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+		http.authorizeRequests().antMatchers("/login").permitAll()
+		.anyRequest().authenticated();
 		
 	}
 
