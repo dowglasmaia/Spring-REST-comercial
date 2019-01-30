@@ -13,8 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
-import maiati.comercial.model.Cargo;
+import maiati.comercial.model.cadastros.Cargo;
 import maiati.comercial.service.CargoService;
+
+/**
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
+ * */
 
 @RestController
 @RequestMapping("/cargos")

@@ -1,13 +1,18 @@
-package maiati.comercial.model;
+package maiati.comercial.model.cadastros;
 
 import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-
+/**
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
+ * */
 @Entity
-@NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p")
+@NamedQuery(name="Pessoa.findAll", query="SELECT p FROM Pessoa p")
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -126,5 +131,6 @@ public class Pessoa implements Serializable {
 			return false;
 		return true;
 	}
+	
 
 }

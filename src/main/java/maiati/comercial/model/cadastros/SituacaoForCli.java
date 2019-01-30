@@ -1,46 +1,45 @@
-package maiati.comercial.model;
-
+package maiati.comercial.model.cadastros;
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+
+/**
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
+ * */
+
 
 @Entity
-@NamedQuery(name = "Papel.findAll", query = "SELECT p FROM Papel p")
-public class Papel implements Serializable {
+@Table(name="situacao_for_cli")
+@NamedQuery(name="SituacaoForCli.findAll", query="SELECT s FROM SituacaoForCli s")
+public class SituacaoForCli implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id;
-
-	@Column(name = "ACESSO_COMPLETO")
-	private String acessoCompleto;
+	private Integer id;
 
 	@Lob
 	private String descricao;
 
 	private String nome;
 
-	public Papel() {
+	
+	public SituacaoForCli() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getAcessoCompleto() {
-		return this.acessoCompleto;
-	}
-
-	public void setAcessoCompleto(String acessoCompleto) {
-		this.acessoCompleto = acessoCompleto;
 	}
 
 	public String getDescricao() {
@@ -63,7 +62,7 @@ public class Papel implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -75,10 +74,15 @@ public class Papel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Papel other = (Papel) obj;
-		if (id != other.id)
+		SituacaoForCli other = (SituacaoForCli) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
+	
+	
 
 }

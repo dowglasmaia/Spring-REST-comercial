@@ -1,4 +1,4 @@
-package maiati.comercial.model;
+package maiati.comercial.model.cadastros;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,8 +13,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
+ * */
 @Entity
-@NamedQuery(name = "Colaborador.findAll", query = "SELECT c FROM Colaborador c")
+@NamedQuery(name="Colaborador.findAll", query="SELECT c FROM Colaborador c")
 public class Colaborador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,32 +28,32 @@ public class Colaborador implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "CTPS_DATA_EXPEDICAO")
+	@Column(name="CTPS_DATA_EXPEDICAO")
 	private Date ctpsDataExpedicao;
 
-	@Column(name = "CTPS_NUMERO")
+	@Column(name="CTPS_NUMERO")
 	private String ctpsNumero;
 
-	@Column(name = "CTPS_SERIE")
+	@Column(name="CTPS_SERIE")
 	private String ctpsSerie;
 
-	@Column(name = "CTPS_UF")
+	@Column(name="CTPS_UF")
 	private String ctpsUf;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_ADMISSAO")
+	@Column(name="DATA_ADMISSAO")
 	private Date dataAdmissao;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_CADASTRO")
+	@Column(name="DATA_CADASTRO")
 	private Date dataCadastro;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_DEMISSAO")
+	@Column(name="DATA_DEMISSAO")
 	private Date dataDemissao;
 
 	@Lob
-	@Column(name = "FOTO_34")
+	@Column(name="FOTO_34")
 	private String foto34;
 
 	private String matricula;
@@ -55,43 +61,44 @@ public class Colaborador implements Serializable {
 	@Lob
 	private String observacao;
 
-	@Column(name = "PAGAMENTO_AGENCIA")
+	@Column(name="PAGAMENTO_AGENCIA")
 	private String pagamentoAgencia;
 
-	@Column(name = "PAGAMENTO_AGENCIA_DIGITO")
+	@Column(name="PAGAMENTO_AGENCIA_DIGITO")
 	private String pagamentoAgenciaDigito;
 
-	@Column(name = "PAGAMENTO_BANCO")
+	@Column(name="PAGAMENTO_BANCO")
 	private String pagamentoBanco;
 
-	@Column(name = "PAGAMENTO_CONTA")
+	@Column(name="PAGAMENTO_CONTA")
 	private String pagamentoConta;
 
-	@Column(name = "PAGAMENTO_CONTA_DIGITO")
+	@Column(name="PAGAMENTO_CONTA_DIGITO")
 	private String pagamentoContaDigito;
 
-	@Column(name = "PAGAMENTO_FORMA")
+	@Column(name="PAGAMENTO_FORMA")
 	private String pagamentoForma;
 
-	// bi-directional many-to-one association to Setor
+	//bi-directional many-to-one association to Setor
 	@ManyToOne
-	@JoinColumn(name = "ID_SETOR")
+	@JoinColumn(name="ID_SETOR")
 	private Setor setor;
 
-	// bi-directional many-to-one association to Cargo
+	//bi-directional many-to-one association to Cargo
 	@ManyToOne
-	@JoinColumn(name = "ID_CARGO")
+	@JoinColumn(name="ID_CARGO")
 	private Cargo cargo;
 
-	// bi-directional many-to-one association to TipoColaborador
+	//bi-directional many-to-one association to TipoColaborador
 	@ManyToOne
-	@JoinColumn(name = "ID_TIPO_COLABORADOR")
+	@JoinColumn(name="ID_TIPO_COLABORADOR")
 	private TipoColaborador tipoColaborador;
 
-	// bi-directional many-to-one association to Pessoa
+	//bi-directional many-to-one association to Pessoa
 	@ManyToOne
-	@JoinColumn(name = "ID_PESSOA")
+	@JoinColumn(name="ID_PESSOA")
 	private Pessoa pessoa;
+
 
 	public Colaborador() {
 	}

@@ -1,11 +1,18 @@
-package maiati.comercial.model;
+package maiati.comercial.model.cadastros;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
+ * */
+
 @Entity
-@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -15,26 +22,26 @@ public class Usuario implements Serializable {
 	private String administrador;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_CADASTRO")
+	@Column(name="DATA_CADASTRO")
 	private Date dataCadastro;
 
 	private String login;
 
 	private String senha;
 
-	// bi-directional many-to-one association to Colaborador
+	//bi-directional many-to-one association to Colaborador
 	@ManyToOne
-	@JoinColumn(name = "ID_COLABORADOR")
+	@JoinColumn(name="ID_COLABORADOR")
 	private Colaborador colaborador;
 
-	// bi-directional many-to-one association to Papel
+	//bi-directional many-to-one association to Papel
 	@ManyToOne
-	@JoinColumn(name = "ID_PAPEL")
+	@JoinColumn(name="ID_PAPEL")
 	private Papel papel;
 
 	@Transient
 	private String token;
-
+	
 	public Usuario() {
 	}
 
@@ -123,5 +130,7 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
+	
+	
 
 }

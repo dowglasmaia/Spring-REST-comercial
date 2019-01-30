@@ -1,4 +1,4 @@
-package maiati.comercial.model;
+package maiati.comercial.model.cadastros;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,21 +11,21 @@ import javax.persistence.Id;
 
 @Entity
 public class Cargo implements Serializable {
+	/**
+	 * @author Dowglas Maia
+	 * Skype: live:dowglasmaia
+	 * E-mail:dowglasmaia@live.com
+	 * Linkedin: www.linkedin.com/in/dowglasmaia
+	 * */
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
 	private String nome;
-
 	private String descricao;
-
 	private BigDecimal salario;
-
 	@Column(name = "CBO_1994")
 	private String cbo1994;
-
 	@Column(name = "CBO_2002")
 	private String cbo2002;
 

@@ -1,28 +1,37 @@
-package maiati.comercial.model;
+package maiati.comercial.model.cadastros;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+
+/**
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
+ * */
 
 @Entity
-@Table(name = "tipo_colaborador")
-@NamedQuery(name = "TipoColaborador.findAll", query = "SELECT t FROM TipoColaborador t")
-public class TipoColaborador implements Serializable {
+@NamedQuery(name="Papel.findAll", query="SELECT p FROM Papel p")
+public class Papel implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int id;
+
+	@Column(name="ACESSO_COMPLETO")
+	private String acessoCompleto;
 
 	@Lob
 	private String descricao;
 
 	private String nome;
 
-	public TipoColaborador() {
+	public Papel() {
 	}
 
 	public int getId() {
@@ -31,6 +40,14 @@ public class TipoColaborador implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getAcessoCompleto() {
+		return this.acessoCompleto;
+	}
+
+	public void setAcessoCompleto(String acessoCompleto) {
+		this.acessoCompleto = acessoCompleto;
 	}
 
 	public String getDescricao() {
@@ -65,10 +82,12 @@ public class TipoColaborador implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoColaborador other = (TipoColaborador) obj;
+		Papel other = (Papel) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
+	
+	
 
 }

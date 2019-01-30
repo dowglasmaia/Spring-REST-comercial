@@ -5,8 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import maiati.comercial.model.Cargo;
+import maiati.comercial.model.cadastros.Cargo;
 import maiati.comercial.repository.CargoRepository;
+
+/**
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
+ * */
 
 @Service
 public class CargoService {
