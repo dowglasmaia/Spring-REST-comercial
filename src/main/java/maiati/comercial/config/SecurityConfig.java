@@ -23,14 +23,14 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 		.anyRequest().authenticated();		
 	}
 	
-	/* Configuração para Realizar a autenticação do usuario*/
+	/* Configuração para Realizar a autenticação do usuario -  Pegando suas credencias e autorizações*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
 		.usersByUsernameQuery("SELECT login, senha, 1 as enabled FROM usuario WHERE login=?")
-		.authoritiesByUsernameQuery("SELECT login, 'ROLE USER' FROM usuario WHERE login=?")
-		.passwordEncoder(new BCryptPasswordEncoder());
+		.authoritiesByUsernameQuery("SELECT login, 'ROLE USER' FROM usuario WHERE login=?") 
+		.passwordEncoder(new BCryptPasswordEncoder()); // faz a criptografia da senha do Usuairo
 	}
 
 }

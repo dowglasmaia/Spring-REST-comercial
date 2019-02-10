@@ -18,7 +18,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import maiati.comercial.model.cadastros.Usuario;
-
+/** 
+ * @author Dowglas Maia
+ * Class  de Configuração do Token
+ * */
 public class SecurityAuthentication extends AbstractAuthenticationProcessingFilter {
 
 	protected SecurityAuthentication(String url, AuthenticationManager manager) {
@@ -32,19 +35,23 @@ public class SecurityAuthentication extends AbstractAuthenticationProcessingFilt
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException, IOException, ServletException {
 
-		// Convert JSON que vem da requisão para Objeto no acso o Usuario.
+		// Convert JSON que vem da requisão para Objeto no caso aqui, o Usuario.
 		Usuario usuario = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
 
+		/*Retorna as credencias e autorizações do usuario */
 	return getAuthenticationManager().authenticate(
-				new UsernamePasswordAuthenticationToken(usuario.getLogin(), usuario.getSenha(), new ArrayList<>()));
+				new UsernamePasswordAuthenticationToken(
+						usuario.getLogin(), 
+						usuario.getSenha(), 
+						new ArrayList<>()));
 
 	}
 	
-	/* Metodo chamado quando o usuario for autenticado!*/
+	/* Metodo chamado quando o usuario for autenticado -  com Sucesso*/
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		
 		super.successfulAuthentication(request, response, chain, authResult);
 	}
 

@@ -39,6 +39,7 @@ public class Usuario implements Serializable {
 	@JoinColumn(name="ID_PAPEL")
 	private Papel papel;
 
+	//Não é Gravado no banco de Dados
 	@Transient
 	private String token;
 	
