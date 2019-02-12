@@ -47,12 +47,20 @@ public class SecurityAuthentication extends AbstractAuthenticationProcessingFilt
 
 	}
 	
-	/* Metodo chamado quando o usuario for autenticado -  com Sucesso*/
+	/* Metodo chamado quando o usuario for autenticado -  e Gera o token para o mesmo*/
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		
-		super.successfulAuthentication(request, response, chain, authResult);
+		Usuario usuario = new Usuario();
+		usuario.setLogin(authResult.getName());
+		
+		usuario.setToken(ConfgToken.gerarToken(usuario.getLogin()));
+		
+		//convertendo Usuario para Json
+		String usuarioJson = new ObjectMapper().writeValueAsString(usuario);
+		response.getWriter().write(usuarioJson);
+		
 	}
 
 }

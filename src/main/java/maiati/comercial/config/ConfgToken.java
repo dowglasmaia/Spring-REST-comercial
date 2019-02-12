@@ -18,9 +18,26 @@ public class ConfgToken {
 		String token = Jwts.builder()
 					.setSubject(subject)
 					.setExpiration(new Date(System.currentTimeMillis() + (1 * 60000)))
-					.signWith(SignatureAlgorithm.HS512, "")
+					.signWith(SignatureAlgorithm.HS512, CHAVE)
 					.compact();
 		return token;
+	}
+	
+	/* Verificando Token  */
+	public static String verivicaToken(String token) throws Exception {
+		if(token != null) {
+			try {
+				return Jwts.parser()
+				.setSigningKey(CHAVE)
+				.parseClaimsJws(token)
+				.getBody()
+				.getSubject();
+				
+			} catch (Exception e) {
+				throw new Exception("Token inválido ou expirado");
+			}		
+		}
+		throw new Exception("Necessário informar o token!");
 	}
 
 }
