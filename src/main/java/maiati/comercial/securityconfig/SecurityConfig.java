@@ -1,4 +1,4 @@
-package maiati.comercial.config;
+package maiati.comercial.securityconfig;
 
 import javax.sql.DataSource;
 
@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -20,8 +21,16 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/login").permitAll()
-		.anyRequest().authenticated();		
-	}
+		.anyRequest().authenticated()
+		.and()
+		
+		/* filtragem do login - passando pela class SecurityAuthentication*/
+		.addFilterBefore(new SecurityAuthentication("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
+		
+		/*filtragem das requisições - passando pela class JWTFilter */
+		.addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class);	
+	
+	}	
 	
 	/* Configuração para Realizar a autenticação do usuario -  Pegando suas credencias e autorizações*/
 	@Override

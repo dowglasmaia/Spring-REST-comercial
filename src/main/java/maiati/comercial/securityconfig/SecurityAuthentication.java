@@ -1,4 +1,4 @@
-package maiati.comercial.config;
+package maiati.comercial.securityconfig;
 
 import java.io.IOException;
 import java.util.ArrayList;
