@@ -16,35 +16,39 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
 
 /**
- * @author Dowglas Maia 
- * Class responsavel por intercepitar as requisições, e
- * verifica se o token e valido ou não
+ * @author Dowglas Maia Class responsavel por intercepitar as requisições, e
+ *         verifica se o token e valido ou não
  */
-public class JWTFilter extends GenericFilterBean{
+public class JWTFilter extends GenericFilterBean {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		
-		//buscar o token da requisição  e faz a verificação e autenticação do memso.
-		try {			
-			String token = ((HttpServletRequest) request).getHeader("Authorization").replace("Bearer ", "");
-			String login = ConfgToken.verivicaToken(token);
-			
-			Authentication authentication = new UsernamePasswordAuthenticationToken(login, null, new ArrayList<>());
-			
-			SecurityContextHolder.getContext().setAuthentication(authentication);
-			
-			chain.doFilter(request, response); //  se tudo estiver ok continua libera a requisição
-			
+
+		// buscar o token da requisição e faz a verificação e autenticação do memso.
+		try {
+			String token = null;
+			if (((HttpServletRequest) request).getHeader("Authorization") != null) {
+				token = ((HttpServletRequest) request).getHeader("Authorization").replace("Bearer ", "");
+			}
+
+			if (token != null) {
+				String login = ConfgToken.verivicaToken(token);
+
+				Authentication authentication = new UsernamePasswordAuthenticationToken(login, null, new ArrayList<>());
+
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+			}
+
+			chain.doFilter(request, response); // se tudo estiver ok continua libera a requisição
+
 		} catch (Exception e) {
-			//caso aja o erro  de autenticação
+			// caso aja o erro de autenticação
 			((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
-			
+
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 }

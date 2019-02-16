@@ -62,5 +62,13 @@ public class SecurityAuthentication extends AbstractAuthenticationProcessingFilt
 		response.getWriter().write(usuarioJson);
 		
 	}
+	
+	/* Metodo chamado quando s autenticaçao do usuario falhar */
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException failed) throws IOException, ServletException {
+		
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Usuário e/ou Senha inválidos!");
+	}
 
 }

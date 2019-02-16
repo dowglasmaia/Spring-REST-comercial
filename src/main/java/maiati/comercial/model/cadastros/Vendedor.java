@@ -12,11 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
-
-/**
- * The persistent class for the vendedor database table.
- * 
- */
 @Entity
 @NamedQuery(name="Vendedor.findAll", query="SELECT v FROM Vendedor v")
 public class Vendedor implements Serializable {
