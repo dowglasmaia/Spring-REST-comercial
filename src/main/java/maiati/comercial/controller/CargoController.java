@@ -34,6 +34,12 @@ public class CargoController {
 	public List<Cargo> listarTodos() {
 		return service.listarTodos();
 	}
+	
+	/* Listar por nome */
+	@GetMapping("/lista{nome}")
+	public List<Cargo> findByName(@PathVariable String nome) {
+		return service.listarPorNome(nome);
+	}
 
 	@GetMapping("/{id}")
 	public Cargo buscarPorId(@PathVariable Integer id) {

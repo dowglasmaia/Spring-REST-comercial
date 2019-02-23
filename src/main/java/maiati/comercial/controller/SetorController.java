@@ -24,7 +24,7 @@ import maiati.comercial.service.SetorService;
  * */
 
 @RestController
-@RequestMapping("/cargos")
+@RequestMapping("/setores")
 public class SetorController {
 
 	@Autowired

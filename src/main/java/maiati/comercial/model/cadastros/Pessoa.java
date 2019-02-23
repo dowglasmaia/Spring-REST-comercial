@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
  * E-mail:dowglasmaia@live.com
  * Linkedin: www.linkedin.com/in/dowglasmaia
  * */
+
 @Entity
 @NamedQuery(name="Pessoa.findAll", query="SELECT p FROM Pessoa p")
 public class Pessoa implements Serializable {

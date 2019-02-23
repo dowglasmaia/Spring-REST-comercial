@@ -26,6 +26,10 @@ public class CargoService {
 		return repository.findAll();
 	}
 
+	/* Listar por nome */
+	public List<Cargo> listarPorNome(String nome) {
+		return repository.findByNome(nome);
+	}
 	/* Buscar por ID */
 	public Cargo buscarPorId(Integer id) {
 		return repository.findById(id).get();
@@ -36,7 +40,7 @@ public class CargoService {
 		return repository.save(cargo);
 	}
 
-	/* Excluir */
+	/* Excluir */ 
 	public void excluir(Integer id) {
 		Cargo cargo = new Cargo();
 		cargo.setId(id);
