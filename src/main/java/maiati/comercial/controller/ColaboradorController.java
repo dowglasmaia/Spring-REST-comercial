@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
 import maiati.comercial.model.cadastros.Colaborador;
@@ -40,7 +42,7 @@ public class ColaboradorController {
 			throw new RecursoNaoEncontradoException("Registro Não Encontrado!");
 		}
 	}
-
+ 
 	@PostMapping
 	public Colaborador salvar(@RequestBody Colaborador obj) {
 		return service.salvaObj(obj);
@@ -51,4 +53,14 @@ public class ColaboradorController {
 		service.excluir(id);
 	}
 
+	/* Enviando Foto */
+	@PostMapping("/upload/{id}")
+	public void uploadFoto(@RequestParam ("foto")MultipartFile file, @PathVariable Integer id) {
+		try {
+			service.uploadFoto(file, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 }
