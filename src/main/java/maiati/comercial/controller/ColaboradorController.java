@@ -13,30 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
-import maiati.comercial.model.cadastros.Cargo;
-import maiati.comercial.service.CargoService;
+import maiati.comercial.model.cadastros.Colaborador;
+import maiati.comercial.service.ColaboradorService;
 
 /**
- * @author Dowglas Maia Skype: 
- * live:dowglasmaia 
- * E-mail:dowglasmaia@live.com
- * Linkedin: www.linkedin.com/in/dowglasmaia
+ * @author Dowglas Maia
  */
 
 @RestController
-@RequestMapping("/cargos")
-public class CargoController {
+@RequestMapping("/colaboradores")
+public class ColaboradorController {
 
 	@Autowired
-	private CargoService service;
+	private ColaboradorService service;
 
 	@GetMapping
-	public List<Cargo> listarTodos() {
+	public List<Colaborador> listarTodos() {
 		return service.listarTodos();
 	}
 
 	@GetMapping("/{id}")
-	public Cargo buscarPorId(@PathVariable Integer id) {
+	public Colaborador buscarPorId(@PathVariable Integer id) {
 		try {
 			return service.buscarPorId(id);
 		} catch (NoSuchElementException e) {
@@ -45,8 +42,8 @@ public class CargoController {
 	}
 
 	@PostMapping
-	public Cargo salvar(@RequestBody Cargo cargo) {
-		return service.salvaObj(cargo);
+	public Colaborador salvar(@RequestBody Colaborador obj) {
+		return service.salvaObj(obj);
 	}
 
 	@DeleteMapping("/{id}")

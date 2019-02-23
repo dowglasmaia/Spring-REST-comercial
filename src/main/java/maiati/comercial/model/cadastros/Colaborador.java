@@ -82,22 +82,22 @@ public class Colaborador implements Serializable {
 	@Column(name="PAGAMENTO_FORMA")
 	private String pagamentoForma;
 
-	//bi-directional many-to-one association to Setor
+	
 	@ManyToOne
 	@JoinColumn(name="ID_SETOR")
 	private Setor setor;
 
-	//bi-directional many-to-one association to Cargo
+	
 	@ManyToOne
 	@JoinColumn(name="ID_CARGO")
 	private Cargo cargo;
 
-	//bi-directional many-to-one association to TipoColaborador
+	
 	@ManyToOne
 	@JoinColumn(name="ID_TIPO_COLABORADOR")
 	private TipoColaborador tipoColaborador;
 
-	//bi-directional many-to-one association to Pessoa
+	
 	@ManyToOne
 	@JoinColumn(name="ID_PESSOA")
 	private Pessoa pessoa;

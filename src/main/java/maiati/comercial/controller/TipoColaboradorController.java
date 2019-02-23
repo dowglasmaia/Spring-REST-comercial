@@ -13,42 +13,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
-import maiati.comercial.model.cadastros.Cargo;
-import maiati.comercial.service.CargoService;
+import maiati.comercial.model.cadastros.TipoColaborador;
+import maiati.comercial.service.TipoColaboradorService;
 
 /**
- * @author Dowglas Maia Skype: 
- * live:dowglasmaia 
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
  * E-mail:dowglasmaia@live.com
  * Linkedin: www.linkedin.com/in/dowglasmaia
- */
+ * */
 
 @RestController
-@RequestMapping("/cargos")
-public class CargoController {
+@RequestMapping("/tipo-colaboradores")
+public class TipoColaboradorController {
 
 	@Autowired
-	private CargoService service;
+	private TipoColaboradorService service;
 
 	@GetMapping
-	public List<Cargo> listarTodos() {
+	public List<TipoColaborador> listarTodos() {
 		return service.listarTodos();
 	}
 
 	@GetMapping("/{id}")
-	public Cargo buscarPorId(@PathVariable Integer id) {
+	public TipoColaborador buscarPorId(@PathVariable Integer id) {
 		try {
 			return service.buscarPorId(id);
 		} catch (NoSuchElementException e) {
 			throw new RecursoNaoEncontradoException("Registro Não Encontrado!");
-		}
+		}		
 	}
 
 	@PostMapping
-	public Cargo salvar(@RequestBody Cargo cargo) {
-		return service.salvaObj(cargo);
+	public TipoColaborador salvar(@RequestBody TipoColaborador obj) {
+		return service.salvaObj(obj);
 	}
-
+	
 	@DeleteMapping("/{id}")
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);
