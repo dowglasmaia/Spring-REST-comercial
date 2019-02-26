@@ -26,6 +26,11 @@ public class PessoaService {
 		return repository.findAll();
 	}
 
+	/* Listar por nome */
+	public List<Pessoa> listarPorNome(String nome) {
+		return repository.findFirst10ByNomeContaining(nome);
+	}
+	
 	/* Buscar por ID */
 	public Pessoa buscarPorId(Integer id) {
 		return repository.findById(id).get();

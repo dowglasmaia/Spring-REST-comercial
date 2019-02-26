@@ -34,6 +34,7 @@ public class ColaboradorService {
 	public Colaborador buscarPorId(Integer id) {
 		return repository.findById(id).get();
 	}
+	
 
 	/* Salvar */
 	public Colaborador salvaObj(Colaborador obj) {

@@ -43,6 +43,13 @@ public class TipoColaboradorController {
 			throw new RecursoNaoEncontradoException("Registro Não Encontrado!");
 		}		
 	}
+	
+	/* Listar por nome */
+	@GetMapping("/lista/{nome}")
+	public List<TipoColaborador> findByName(@PathVariable String nome) {
+		return service.listarPorNome(nome);
+	}
+	
 
 	@PostMapping
 	public TipoColaborador salvar(@RequestBody TipoColaborador obj) {

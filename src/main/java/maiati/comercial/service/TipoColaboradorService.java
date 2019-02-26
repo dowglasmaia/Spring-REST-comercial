@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import maiati.comercial.model.cadastros.Setor;
 import maiati.comercial.model.cadastros.TipoColaborador;
 import maiati.comercial.repository.TipoColaboradorRepository;
 
@@ -34,6 +35,11 @@ public class TipoColaboradorService {
 	/* Salvar */
 	public TipoColaborador salvaObj(TipoColaborador TipoColaborador) {
 		return repository.save(TipoColaborador);
+	}
+	
+	/* Listar por nome */
+	public List<TipoColaborador> listarPorNome(String nome) {
+		return repository.findFirst10ByNomeContaining(nome);
 	}
 
 	/* Excluir */

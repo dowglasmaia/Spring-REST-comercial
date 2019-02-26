@@ -36,7 +36,7 @@ public class CargoController {
 	}
 	
 	/* Listar por nome */
-	@GetMapping("/lista{nome}")
+	@GetMapping("/lista/{nome}")
 	public List<Cargo> findByName(@PathVariable String nome) {
 		return service.listarPorNome(nome);
 	}

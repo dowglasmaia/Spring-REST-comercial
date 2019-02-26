@@ -1,5 +1,7 @@
 package maiati.comercial.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,7 @@ import maiati.comercial.model.cadastros.TipoColaborador;
 @Repository
 public interface TipoColaboradorRepository extends JpaRepository<TipoColaborador, Integer> {
 
+	/* Buscar pelo nome com Padrão do SpringJPA - com Padrão de mostra os 10 Primeiros Registros*/
+	List<TipoColaborador> findFirst10ByNomeContaining(String nome);
+	
 }

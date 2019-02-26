@@ -17,11 +17,11 @@ import maiati.comercial.model.cadastros.Setor;
 import maiati.comercial.service.SetorService;
 
 /**
- * @author Dowglas Maia
- * Skype: live:dowglasmaia
+ * @author Dowglas Maia 
+ * Skype: live:dowglasmaia 
  * E-mail:dowglasmaia@live.com
  * Linkedin: www.linkedin.com/in/dowglasmaia
- * */
+ */
 
 @RestController
 @RequestMapping("/setores")
@@ -41,14 +41,20 @@ public class SetorController {
 			return service.buscarPorId(id);
 		} catch (NoSuchElementException e) {
 			throw new RecursoNaoEncontradoException("Registro Não Encontrado!");
-		}		
+		}
+	}
+
+	/* Listar por nome */
+	@GetMapping("/lista/{nome}")
+	public List<Setor> findByName(@PathVariable String nome) {
+		return service.listarPorNome(nome);
 	}
 
 	@PostMapping
 	public Setor salvar(@RequestBody Setor obj) {
 		return service.salvaObj(obj);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);

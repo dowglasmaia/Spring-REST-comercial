@@ -28,7 +28,7 @@ public class CargoService {
 
 	/* Listar por nome */
 	public List<Cargo> listarPorNome(String nome) {
-		return repository.findByNome(nome);
+		return repository.findFirst10ByNomeContaining(nome);
 	}
 	/* Buscar por ID */
 	public Cargo buscarPorId(Integer id) {

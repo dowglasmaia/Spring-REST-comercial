@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
+import maiati.comercial.model.cadastros.Colaborador;
 import maiati.comercial.model.cadastros.Pessoa;
 import maiati.comercial.service.PessoaService;
 
@@ -44,6 +45,12 @@ public class PessoaController {
 		}		
 	}
 
+	/* Listar por nome */
+	@GetMapping("/lista/{nome}")
+	public List<Pessoa> busarPorName(@PathVariable String nome) {
+		return service.listarPorNome(nome);
+	}
+	
 	@PostMapping
 	public Pessoa salvar(@RequestBody Pessoa obj) {
 		return service.salvaObj(obj);

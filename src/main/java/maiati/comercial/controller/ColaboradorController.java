@@ -32,11 +32,6 @@ public class ColaboradorController {
 	@Autowired
 	private ColaboradorService service;
 
-	/*@GetMapping
-	public List<Colaborador> listarTodos() {
-		return service.listarTodos();
-	}
-	*/
 	
 	/*Listar Todos DTO*/
 	@GetMapping
@@ -55,6 +50,7 @@ public class ColaboradorController {
 		}
 	}
  
+		
 	@PostMapping
 	public Colaborador salvar(@RequestBody Colaborador obj) {
 		return service.salvaObj(obj);

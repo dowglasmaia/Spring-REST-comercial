@@ -14,5 +14,7 @@ import maiati.comercial.model.cadastros.Colaborador;
 
 @Repository
 public interface ColaboradorRepository extends JpaRepository<Colaborador, Integer> {
+	
+	
 
 }

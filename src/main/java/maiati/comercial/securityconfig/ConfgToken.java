@@ -17,7 +17,7 @@ public class ConfgToken {
 	public static String gerarToken (String subject) {
 		String token = Jwts.builder()
 					.setSubject(subject)
-					.setExpiration(new Date(System.currentTimeMillis()  + (2880 * 60000))) // 24Horas
+					.setExpiration(new Date(System.currentTimeMillis()  + (60 * 60000))) // 24Horas
 					.signWith(SignatureAlgorithm.HS512, CHAVE)
 					.compact();
 		return token;

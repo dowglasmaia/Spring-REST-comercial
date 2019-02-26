@@ -9,8 +9,10 @@ import maiati.comercial.model.cadastros.Setor;
 import maiati.comercial.repository.SetorRepository;
 
 /**
- * @author Dowglas Maia Skype: live:dowglasmaia E-mail:dowglasmaia@live.com
- *         Linkedin: www.linkedin.com/in/dowglasmaia
+ * @author Dowglas Maia 
+ * Skype: live:dowglasmaia 
+ * E-mail:dowglasmaia@live.com
+ * Linkedin: www.linkedin.com/in/dowglasmaia
  */
 
 @Service
@@ -28,6 +30,12 @@ public class SetorService {
 	public Setor buscarPorId(Integer id) {
 		return repository.findById(id).get();
 	}
+	
+
+	/* Listar por nome */
+	public List<Setor> listarPorNome(String nome) {
+		return repository.findFirst10ByNomeContaining(nome);
+	}
 
 	/* Salvar */
 	public Setor salvaObj(Setor obj) {
@@ -40,5 +48,5 @@ public class SetorService {
 		obj.setId(id);
 		repository.delete(obj);
 	}
-	
+
 }
