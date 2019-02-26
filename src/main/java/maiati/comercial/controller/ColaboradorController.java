@@ -2,8 +2,10 @@ package maiati.comercial.controller;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
 import maiati.comercial.model.cadastros.Colaborador;
+import maiati.comercial.model.cadastros.dto.ColaboradorDTO;
 import maiati.comercial.service.ColaboradorService;
 
 /**
@@ -29,9 +32,18 @@ public class ColaboradorController {
 	@Autowired
 	private ColaboradorService service;
 
-	@GetMapping
+	/*@GetMapping
 	public List<Colaborador> listarTodos() {
 		return service.listarTodos();
+	}
+	*/
+	
+	/*Listar Todos DTO*/
+	@GetMapping
+	public ResponseEntity<List<ColaboradorDTO>>findAll(){
+		List<Colaborador>list = service.listarTodos();
+		List<ColaboradorDTO>listDTO = list.stream().map(obj -> new ColaboradorDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 
 	@GetMapping("/{id}")

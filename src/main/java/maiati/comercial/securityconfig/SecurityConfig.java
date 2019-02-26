@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -33,7 +32,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 		http.csrf().disable().authorizeRequests()  /* Usar o .csrf().disable() - somente em Ambiente de Desenvolvimento  */
 		.antMatchers("/login").permitAll()
 		.antMatchers("/error").permitAll()
-		//.antMatchers("/colaboradores/**").permitAll() 
+		.antMatchers("/colaboradores/**").permitAll() 
 		.antMatchers("/cargos/**").permitAll()
 		.anyRequest().authenticated()
 		.and()
