@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
+import maiati.comercial.exception.UploadException;
 import maiati.comercial.model.cadastros.Colaborador;
 import maiati.comercial.model.cadastros.dto.ColaboradorDTO;
 import maiati.comercial.service.ColaboradorService;
@@ -67,7 +68,7 @@ public class ColaboradorController {
 		try {
 			service.uploadFoto(file, id);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new UploadException(e.getMessage());
 		}
 
 	}

@@ -14,10 +14,10 @@ public class ComercialServidorApplication {
 	}
 	
 	// test para criptografar a senha
-	/*private static void gerarSenha() {
-		System.out.println(new BCryptPasswordEncoder().encode("0123"));
-	}
+	//private static void gerarSenha() {
+	//	System.out.println(new BCryptPasswordEncoder().encode("0123"));
+	//}
 	
-*/
+
 }
 

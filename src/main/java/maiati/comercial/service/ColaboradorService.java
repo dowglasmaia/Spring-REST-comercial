@@ -48,10 +48,12 @@ public class ColaboradorService {
 		repository.delete(obj);
 	}
 
-	/* Enviando Foto - no servidor */
+	/* Enviando Foto do Colaborador para o servidor */
 	@SuppressWarnings("unused")
 	public void uploadFoto(MultipartFile file, Integer id) throws Exception {
 		String caminhoArquivo = context.getRealPath("/"); // setando para pasta Raiz do Servidor
+		
+		System.out.println(caminhoArquivo);
 		
 		File pasta = new File(caminhoArquivo + "\\images\\colaborador\\");
 		/* Verifico se a Pasta Exite - se não criamos a mesma*/
@@ -62,5 +64,9 @@ public class ColaboradorService {
 
 		file.transferTo(foto); // pega o arquivo do MultipartFile e armazena do File
 
+		Colaborador colaborador = buscarPorId(id);
+		colaborador.setFoto34("/images/colaborador/" + "col-"+id + ".jpg");
+		salvaObj(colaborador);
+		
 	}
 }
