@@ -5,11 +5,14 @@ import java.util.Arrays;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,7 +25,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -32,10 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private DataSource dataSource;
 
 	/* liberando acessos de padrão */
-	private static final String[] PUBLIC_MATCHERs_GETS = {
-			"/**",
-			"images/**",
-			};
+	private static final String[] PUBLIC_MATCHERs_GETS = { "/**", "images/**", };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -48,18 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.cors().and().csrf().disable();
 
-		http.authorizeRequests().antMatchers(PUBLIC_MATCHERs_GETS).permitAll()
-				.anyRequest()
-				.authenticated().and()
-		
-		/* filtragem do login - passando pela class SecurityAuthentication*/
-		.addFilterBefore(new SecurityAuthentication("/login", authenticationManager()), UsernamePasswordAuthenticationFilter.class)
-		
-		/*filtragem das requisições - passando pela class JWTFilter */
-		.addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class);	
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.authorizeRequests().antMatchers(PUBLIC_MATCHERs_GETS).permitAll().anyRequest().authenticated().and()
 
-				
+				/* filtragem do login - passando pela class SecurityAuthentication */
+				.addFilterBefore(new SecurityAuthentication("/login", authenticationManager()),
+						UsernamePasswordAuthenticationFilter.class)
+
+				/* filtragem das requisições - passando pela class JWTFilter */
+				.addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
 	}
 
@@ -84,6 +81,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 
+	}
+
+	/* Customizando as Datas */
+	@Bean
+	public Jackson2ObjectMapperBuilderCustomizer dateCustomizer() {
+		return new Jackson2ObjectMapperBuilderCustomizer() {
+
+			@Override
+			public void customize(Jackson2ObjectMapperBuilder jacksonObjectMapperBuilder) {
+				
+				jacksonObjectMapperBuilder.simpleDateFormat("dd-MM-yyyy");
+
+				
+			}
+
+		};
 	}
 
 }
