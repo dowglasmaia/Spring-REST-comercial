@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,7 @@ public class CompraRequisicao implements Serializable {
 
 	
 	
-	@OneToMany(mappedBy = "compraRequisicao")
+	@OneToMany(mappedBy = "compraRequisicao", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CompraRequisicaoDetalhe> listaCompraRequisicaoDetalhes;
 
 	public CompraRequisicao() {

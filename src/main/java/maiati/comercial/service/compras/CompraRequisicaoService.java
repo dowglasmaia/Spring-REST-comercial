@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import maiati.comercial.model.compras.CompraRequisicao;
+import maiati.comercial.model.compras.CompraRequisicaoDetalhe;
 import maiati.comercial.repository.compras.CompraRequisicaoRepository;
 
 /**
@@ -25,12 +26,16 @@ public class CompraRequisicaoService {
 	}
 
 	/* Buscar por ID */
-	public CompraRequisicao buscarPorId(Integer id) {
+	public CompraRequisicao buscarPorId(Integer id) {	
 		return repository.findById(id).get();
 	}
 
 	/* Salvar */
 	public CompraRequisicao salvaObj(CompraRequisicao obj) {
+		/* Garantindo que os Detalhes das Requisições serão Salvas quando a mesma for Salva Salva.*/
+		for(CompraRequisicaoDetalhe d :obj.getListaCompraRequisicaoDetalhes() ) {
+			d.setCompraRequisicao(obj);
+		}
 		return repository.save(obj);
 	}
 
