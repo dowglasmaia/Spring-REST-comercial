@@ -1,13 +1,12 @@
-package maiati.comercial.service;
+package maiati.comercial.service.cadastros;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import maiati.comercial.model.cadastros.Setor;
 import maiati.comercial.model.cadastros.TipoColaborador;
-import maiati.comercial.repository.TipoColaboradorRepository;
+import maiati.comercial.repository.cadastros.TipoColaboradorRepository;
 
 /**
  * @author Dowglas Maia

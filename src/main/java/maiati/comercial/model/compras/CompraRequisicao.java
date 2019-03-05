@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,15 +20,13 @@ import javax.persistence.TemporalType;
 import maiati.comercial.model.cadastros.Colaborador;
 
 /**
- * @author Dowglas Maia
- * Skype: live:dowglasmaia
- * E-mail:dowglasmaia@live.com
- * Linkedin: www.linkedin.com/in/dowglasmaia
- * */
+ * @author Dowglas Maia Skype: live:dowglasmaia E-mail:dowglasmaia@live.com
+ *         Linkedin: www.linkedin.com/in/dowglasmaia
+ */
 
 @Entity
-@Table(name="compra_requisicao")
-@NamedQuery(name="CompraRequisicao.findAll", query="SELECT c FROM CompraRequisicao c")
+@Table(name = "compra_requisicao")
+@NamedQuery(name = "CompraRequisicao.findAll", query = "SELECT c FROM CompraRequisicao c")
 public class CompraRequisicao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -38,22 +35,22 @@ public class CompraRequisicao implements Serializable {
 	private Integer id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_REQUISICAO")
+	@Column(name = "DATA_REQUISICAO")
 	private Date dataRequisicao;
 
-	//bi-directional many-to-one association to CompraTipoRequisicao
 	@ManyToOne
-	@JoinColumn(name="ID_COMPRA_TIPO_REQUISICAO")
+	@JoinColumn(name = "ID_COMPRA_TIPO_REQUISICAO")
 	private CompraTipoRequisicao compraTipoRequisicao;
 
-	//bi-directional many-to-one association to Colaborador
 	@ManyToOne
-	@JoinColumn(name="ID_COLABORADOR")
+	@JoinColumn(name = "ID_COLABORADOR")
 	private Colaborador colaborador;
 
-	@OneToMany(mappedBy = "compraRequisicao", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<CompraRequisicaoDetalhe> listaCompraRequisicaoDetalhe;
 	
+	
+	@OneToMany(mappedBy = "compraRequisicao")
+	private Set<CompraRequisicaoDetalhe> listaCompraRequisicaoDetalhes;
+
 	public CompraRequisicao() {
 	}
 
@@ -89,12 +86,10 @@ public class CompraRequisicao implements Serializable {
 		this.colaborador = colaborador;
 	}
 
-	public Set<CompraRequisicaoDetalhe> getListaCompraRequisicaoDetalhe() {
-		return listaCompraRequisicaoDetalhe;
-	}
+	
 
-	public void setListaCompraRequisicaoDetalhe(Set<CompraRequisicaoDetalhe> listaCompraRequisicaoDetalhe) {
-		this.listaCompraRequisicaoDetalhe = listaCompraRequisicaoDetalhe;
+	public Set<CompraRequisicaoDetalhe> getListaCompraRequisicaoDetalhes() {
+		return listaCompraRequisicaoDetalhes;
 	}
 
 	@Override
@@ -121,7 +116,5 @@ public class CompraRequisicao implements Serializable {
 			return false;
 		return true;
 	}
-
-	
 
 }

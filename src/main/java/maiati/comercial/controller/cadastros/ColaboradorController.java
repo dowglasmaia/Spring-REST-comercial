@@ -1,4 +1,4 @@
-package maiati.comercial.controller;
+package maiati.comercial.controller.cadastros;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,7 +20,7 @@ import maiati.comercial.exception.RecursoNaoEncontradoException;
 import maiati.comercial.exception.UploadException;
 import maiati.comercial.model.cadastros.Colaborador;
 import maiati.comercial.model.cadastros.dto.ColaboradorDTO;
-import maiati.comercial.service.ColaboradorService;
+import maiati.comercial.service.cadastros.ColaboradorService;
 
 /**
  * @author Dowglas Maia

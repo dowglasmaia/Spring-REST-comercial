@@ -1,4 +1,4 @@
-package maiati.comercial.service;
+package maiati.comercial.service.cadastros;
 
 import java.io.File;
 import java.util.List;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import maiati.comercial.model.cadastros.Colaborador;
-import maiati.comercial.repository.ColaboradorRepository;
+import maiati.comercial.repository.cadastros.ColaboradorRepository;
 
 /**
  * @author Dowglas Maia *

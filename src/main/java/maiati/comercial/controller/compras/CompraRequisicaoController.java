@@ -1,4 +1,4 @@
-package maiati.comercial.controller;
+package maiati.comercial.controller.compras;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -13,48 +13,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
-import maiati.comercial.model.cadastros.Cargo;
-import maiati.comercial.service.CargoService;
+import maiati.comercial.model.compras.CompraRequisicao;
+import maiati.comercial.service.compras.CompraRequisicaoService;
 
 /**
- * @author Dowglas Maia Skype: 
- * live:dowglasmaia 
+ * @author Dowglas Maia
+ * Skype: live:dowglasmaia
  * E-mail:dowglasmaia@live.com
  * Linkedin: www.linkedin.com/in/dowglasmaia
- */
+ * */
 
 @RestController
-@RequestMapping("/cargos")
-public class CargoController {
+@RequestMapping("/compra-requisicao")
+public class CompraRequisicaoController {
 
 	@Autowired
-	private CargoService service;
+	private CompraRequisicaoService service;
 
 	@GetMapping
-	public List<Cargo> listarTodos() {
+	public List<CompraRequisicao> listarTodos() {
 		return service.listarTodos();
-	}
-	
-	/* Listar por nome */
-	@GetMapping("/lista/{nome}")
-	public List<Cargo> findByName(@PathVariable String nome) {
-		return service.listarPorNome(nome);
 	}
 
 	@GetMapping("/{id}")
-	public Cargo buscarPorId(@PathVariable Integer id) {
+	public CompraRequisicao buscarPorId(@PathVariable Integer id) {
 		try {
 			return service.buscarPorId(id);
 		} catch (NoSuchElementException e) {
 			throw new RecursoNaoEncontradoException("Registro Não Encontrado!");
-		}
+		}		
 	}
+		
 
 	@PostMapping
-	public Cargo salvar(@RequestBody Cargo cargo) {
-		return service.salvaObj(cargo);
+	public CompraRequisicao salvar(@RequestBody CompraRequisicao obj) {
+		return service.salvaObj(obj);
 	}
-
+	
 	@DeleteMapping("/{id}")
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);

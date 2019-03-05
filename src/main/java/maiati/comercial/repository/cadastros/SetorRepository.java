@@ -1,4 +1,4 @@
-package maiati.comercial.repository;
+package maiati.comercial.repository.cadastros;
 
 import java.util.List;
 

@@ -41,14 +41,14 @@ public class CompraRequisicaoDetalhe implements Serializable {
 
 	@Column(name="QUANTIDADE_COTADA")
 	private BigDecimal quantidadeCotada;
-
-	//bi-directional many-to-one association to CompraRequisicao
+	
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="ID_COMPRA_REQUISICAO")
 	private CompraRequisicao compraRequisicao;
-
-	//bi-directional many-to-one association to Produto
+	
+	
 	@ManyToOne
 	@JoinColumn(name="ID_PRODUTO")
 	private Produto produto;

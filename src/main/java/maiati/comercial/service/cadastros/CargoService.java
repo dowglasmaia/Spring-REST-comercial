@@ -1,4 +1,4 @@
-package maiati.comercial.service;
+package maiati.comercial.service.cadastros;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import maiati.comercial.model.cadastros.Cargo;
-import maiati.comercial.repository.CargoRepository;
+import maiati.comercial.repository.cadastros.CargoRepository;
 
 /**
  * @author Dowglas Maia

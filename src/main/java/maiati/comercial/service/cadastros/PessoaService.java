@@ -1,12 +1,12 @@
-package maiati.comercial.service;
+package maiati.comercial.service.cadastros;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import maiati.comercial.model.cadastros.Setor;
-import maiati.comercial.repository.SetorRepository;
+import maiati.comercial.model.cadastros.Pessoa;
+import maiati.comercial.repository.cadastros.PessoaRepository;
 
 /**
  * @author Dowglas Maia 
@@ -16,37 +16,35 @@ import maiati.comercial.repository.SetorRepository;
  */
 
 @Service
-public class SetorService {
+public class PessoaService {
 
 	@Autowired
-	private SetorRepository repository;
+	private PessoaRepository repository;
 
 	/* Listar Todos */
-	public List<Setor> listarTodos() {
+	public List<Pessoa> listarTodos() {
 		return repository.findAll();
 	}
 
-	/* Buscar por ID */
-	public Setor buscarPorId(Integer id) {
-		return repository.findById(id).get();
+	/* Listar por nome */
+	public List<Pessoa> listarPorNome(String nome) {
+		return repository.findFirst10ByNomeContaining(nome);
 	}
 	
-
-	/* Listar por nome */
-	public List<Setor> listarPorNome(String nome) {
-		return repository.findFirst10ByNomeContaining(nome);
+	/* Buscar por ID */
+	public Pessoa buscarPorId(Integer id) {
+		return repository.findById(id).get();
 	}
 
 	/* Salvar */
-	public Setor salvaObj(Setor obj) {
+	public Pessoa salvaObj(Pessoa obj) {
 		return repository.save(obj);
 	}
 
 	/* Excluir */
 	public void excluir(Integer id) {
-		Setor obj = new Setor();
+		Pessoa obj = new Pessoa();
 		obj.setId(id);
 		repository.delete(obj);
 	}
-
 }

@@ -2,16 +2,13 @@ package maiati.comercial.model.compras;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,10 +39,6 @@ public class CompraCotacao implements Serializable {
 
 	private String situacao;
 
-	@OneToMany(mappedBy = "compraCotacao", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<CompraReqCotacaoDetalhe> listaCompraReqCotacaoDetalhe;
-	@OneToMany(mappedBy = "compraCotacao", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<CompraFornecedorCotacao> listaCompraFornecedorCotacao;
 	
 	public CompraCotacao() {
 	}
@@ -82,21 +75,7 @@ public class CompraCotacao implements Serializable {
 		this.situacao = situacao;
 	}
 
-	public Set<CompraReqCotacaoDetalhe> getListaCompraReqCotacaoDetalhe() {
-		return listaCompraReqCotacaoDetalhe;
-	}
 
-	public void setListaCompraReqCotacaoDetalhe(Set<CompraReqCotacaoDetalhe> listaCompraReqCotacaoDetalhe) {
-		this.listaCompraReqCotacaoDetalhe = listaCompraReqCotacaoDetalhe;
-	}
-
-	public Set<CompraFornecedorCotacao> getListaCompraFornecedorCotacao() {
-		return listaCompraFornecedorCotacao;
-	}
-
-	public void setListaCompraFornecedorCotacao(Set<CompraFornecedorCotacao> listaCompraFornecedorCotacao) {
-		this.listaCompraFornecedorCotacao = listaCompraFornecedorCotacao;
-	}
 
 	@Override
 	public int hashCode() {

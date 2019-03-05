@@ -64,9 +64,7 @@ public class CompraFornecedorCotacao implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ID_FORNECEDOR")
 	private Fornecedor fornecedor;
-
-	@OneToMany(mappedBy = "compraFornecedorCotacao", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<CompraCotacaoDetalhe> listaCompraCotacaoDetalhe;
+	
 	
 	public CompraFornecedorCotacao() {
 	}
@@ -143,13 +141,6 @@ public class CompraFornecedorCotacao implements Serializable {
 		this.fornecedor = fornecedor;
 	}
 
-	public Set<CompraCotacaoDetalhe> getListaCompraCotacaoDetalhe() {
-		return listaCompraCotacaoDetalhe;
-	}
-
-	public void setListaCompraCotacaoDetalhe(Set<CompraCotacaoDetalhe> listaCompraCotacaoDetalhe) {
-		this.listaCompraCotacaoDetalhe = listaCompraCotacaoDetalhe;
-	}
 
 	@Override
 	public int hashCode() {

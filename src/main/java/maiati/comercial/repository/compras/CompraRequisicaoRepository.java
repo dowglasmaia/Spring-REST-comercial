@@ -1,9 +1,9 @@
-package maiati.comercial.repository;
+package maiati.comercial.repository.compras;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import maiati.comercial.model.cadastros.Colaborador;
+import maiati.comercial.model.compras.CompraRequisicao;
 
 /**
  * @author Dowglas Maia
@@ -13,8 +13,7 @@ import maiati.comercial.model.cadastros.Colaborador;
  * */
 
 @Repository
-public interface ColaboradorRepository extends JpaRepository<Colaborador, Integer> {
-	
+public interface CompraRequisicaoRepository extends JpaRepository<CompraRequisicao, Integer> {
 	
 
 }
