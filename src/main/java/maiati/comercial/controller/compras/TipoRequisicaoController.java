@@ -24,7 +24,7 @@ import maiati.comercial.service.compras.CompraTipoRequisicaoService;
  * */
 
 @RestController
-@RequestMapping("/tipo-requisicao")
+@RequestMapping("/tipo/requisicao")
 public class TipoRequisicaoController {
 
 	@Autowired

@@ -2,6 +2,7 @@ package maiati.comercial.model.compras;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -64,6 +65,10 @@ public class CompraFornecedorCotacao implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ID_FORNECEDOR")
 	private Fornecedor fornecedor;
+	
+	
+	@OneToMany(mappedBy = "compraFornecedorCotacao", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<CompraCotacaoDetalhe> listaCompraCotacaoDetalhe = new HashSet<>();	
 	
 	
 	public CompraFornecedorCotacao() {
@@ -140,7 +145,16 @@ public class CompraFornecedorCotacao implements Serializable {
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
+	
+	
 
+	public Set<CompraCotacaoDetalhe> getListaCompraCotacaoDetalhe() {
+		return listaCompraCotacaoDetalhe;
+	}
+
+	public void setListaCompraCotacaoDetalhe(Set<CompraCotacaoDetalhe> listaCompraCotacaoDetalhe) {
+		this.listaCompraCotacaoDetalhe = listaCompraCotacaoDetalhe;
+	}
 
 	@Override
 	public int hashCode() {

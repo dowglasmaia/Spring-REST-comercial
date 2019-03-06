@@ -2,6 +2,7 @@ package maiati.comercial.model.compras;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -46,11 +47,11 @@ public class CompraRequisicao implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_COLABORADOR")
 	private Colaborador colaborador;
-
 	
 	
 	@OneToMany(mappedBy = "compraRequisicao", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<CompraRequisicaoDetalhe> listaCompraRequisicaoDetalhes;
+	private Set<CompraRequisicaoDetalhe> listaCompraRequisicaoDetalhes = new HashSet<>();	
+	
 
 	public CompraRequisicao() {
 	}

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
-import maiati.comercial.model.compras.CompraRequisicao;
-import maiati.comercial.service.compras.CompraRequisicaoService;
+import maiati.comercial.model.compras.CompraCotacao;
+import maiati.comercial.service.compras.CompraCotacaoService;
 
 /**
  * @author Dowglas Maia
@@ -24,19 +24,19 @@ import maiati.comercial.service.compras.CompraRequisicaoService;
  * */
 
 @RestController
-@RequestMapping("/compra/requisicao")
-public class CompraRequisicaoController {
+@RequestMapping("/compra/cotacao")
+public class CompraContacaoController {
 
 	@Autowired
-	private CompraRequisicaoService service;
+	private CompraCotacaoService service;
 
 	@GetMapping
-	public List<CompraRequisicao> listarTodos() {
+	public List<CompraCotacao> listarTodos() {
 		return service.listarTodos();
 	}
 
 	@GetMapping("/{id}")
-	public CompraRequisicao buscarPorId(@PathVariable Integer id) {
+	public CompraCotacao buscarPorId(@PathVariable Integer id) {
 		try {
 			return service.buscarPorId(id);
 		} catch (NoSuchElementException e) {
@@ -46,7 +46,7 @@ public class CompraRequisicaoController {
 		
 
 	@PostMapping
-	public CompraRequisicao salvar(@RequestBody CompraRequisicao obj) {
+	public CompraCotacao salvar(@RequestBody CompraCotacao obj) {
 		return service.salvaObj(obj);
 	}
 	
