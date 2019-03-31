@@ -56,6 +56,7 @@ public class TipoRequisicaoController {
 		return service.salvaObj(obj);
 	}
 	
+	
 	@DeleteMapping("/{id}")
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);

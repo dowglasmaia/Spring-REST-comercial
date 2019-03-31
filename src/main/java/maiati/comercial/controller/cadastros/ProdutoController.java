@@ -4,17 +4,20 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import maiati.comercial.exception.RecursoNaoEncontradoException;
+import maiati.comercial.model.cadastros.Produto;
 import maiati.comercial.model.cadastros.TipoColaborador;
-import maiati.comercial.service.cadastros.TipoColaboradorService;
+import maiati.comercial.service.cadastros.ProdutoService;
 
 /**
  * @author Dowglas Maia
@@ -24,35 +27,36 @@ import maiati.comercial.service.cadastros.TipoColaboradorService;
  * */
 
 @RestController
-@RequestMapping("/tipo-colaboradores")
-public class TipoColaboradorController {
+@RequestMapping("/produtos")
+public class ProdutoController {
 
 	@Autowired
-	private TipoColaboradorService service;
+	private ProdutoService service;
 
 	@GetMapping
-	public List<TipoColaborador> listarTodos() {
+	public List<Produto> listarTodos() {
 		return service.listarTodos();
 	}
 
 	@GetMapping("/{id}")
-	public TipoColaborador buscarPorId(@PathVariable Integer id) {
+	public Produto buscarPorId(@PathVariable Integer id) {
 		try {
 			return service.buscarPorId(id);
 		} catch (NoSuchElementException e) {
 			throw new RecursoNaoEncontradoException("Registro Não Encontrado!");
 		}		
 	}
+
 	
-	/* Listar por nome */
-	@GetMapping("/lista/{nome}")
-	public List<TipoColaborador> findByName(@PathVariable String nome) {
-		return service.listarPorNome(nome);
+	/* Buscar por descricao - como paramentro*/
+	@GetMapping("/lista")
+	public ResponseEntity<List<Produto>> findByName(@RequestParam(value = "descricao") String descricao) {
+		List<Produto> list = service.getDescricao(descricao);
+		return ResponseEntity.ok().body(list);
 	}
-	
 
 	@PostMapping
-	public TipoColaborador salvar(@RequestBody TipoColaborador obj) {
+	public Produto salvar(@RequestBody Produto obj) {
 		return service.salvaObj(obj);
 	}
 	

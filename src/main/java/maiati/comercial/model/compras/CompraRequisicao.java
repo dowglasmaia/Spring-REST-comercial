@@ -49,6 +49,7 @@ public class CompraRequisicao implements Serializable {
 	private Colaborador colaborador;
 	
 	
+	
 	@OneToMany(mappedBy = "compraRequisicao", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<CompraRequisicaoDetalhe> listaCompraRequisicaoDetalhes = new HashSet<>();	
 	
